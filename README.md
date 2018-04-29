@@ -1,3 +1,5 @@
+[![build status](https://api.travis-ci.org/nuxeh/url-bot-rs.png?branch=master)](https://api.travis-ci.org/nuxeh/url-bot-rs)
+
 # url-bot-rs
 
 URL title fetching bot for IRC in Rust
@@ -14,7 +16,7 @@ URL title fetching bot for IRC in Rust
 
 ## Configuration
 
-Configuration is done by editing `Config.toml`.
+Configuration is done by editing `config.toml`.
 
 This may include:
 - Address of the IRC server to connect to
