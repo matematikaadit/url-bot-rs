@@ -12,6 +12,16 @@ URL title fetching bot for IRC in Rust
     cargo build
     cargo run
 
+## Configuration
+
+Configuration is done by editing `Config.toml`.
+
+This may include:
+- Address of the IRC server to connect to
+- Connection credentials
+- The nick to use when joining the server
+- Channels to join on the server
+
 ## Run
 
     cargo run
