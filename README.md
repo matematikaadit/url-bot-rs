@@ -1,4 +1,6 @@
-# Super minimal URL title fetching bot for IRC in Rust
+# url-bot-rs
+
+Super minimal URL title fetching bot for IRC in Rust
 
 ## Build
 
