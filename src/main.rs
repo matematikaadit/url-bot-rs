@@ -29,16 +29,16 @@ const USAGE: &'static str = "
 URL munching IRC bot.
 
 Usage:
-       url-bot-rs [--db=<path>]
+       url-bot-rs [--db=PATH]
 
 Options:
     -h --help       Show this help message.
-    --db=<path>     Use a sqlite database at <path>.
+    -d --db=PATH    Use a sqlite database at PATH.
 ";
 
 #[derive(Debug, Deserialize, Default)]
 struct Args {
-    db: String,
+    flag_db: String,
 }
 
 #[derive(Debug)]
@@ -50,8 +50,8 @@ struct LogEntry {
     time_created: Timespec,
 }
 
-fn add_log(db: Box<Option<Connection>>, e: &LogEntry) {
-	*db.execute("INSERT INTO posts (url, user, channel, time_created)
+fn add_log(db: &Connection, e: &LogEntry) {
+	db.execute("INSERT INTO posts (url, user, channel, time_created)
 		VALUES (?1, ?2, ?3, ?4)",
 		&[&e.url, &e.user, &e.channel, &e.time_created]).unwrap();
 }
@@ -64,16 +64,16 @@ fn main() {
         	.and_then(|d| d.deserialize())
         	.unwrap_or_else(|e| e.exit());
 
-	let mut db: Box<Option<Connection>>;
-	if !args.db.is_empty()
+	let db;
+	if !args.flag_db.is_empty()
 	{
 		/* open the sqlite database for logging */
 		/* TODO: get database path from configuration */
 		/* TODO: make logging optional */
-		println!("Using database at: {}", args.db);
+		println!("Using database at: {}", args.flag_db);
 
-		db = Box::new(Some(Connection::open(args.db).unwrap()));
-		db.unwrap().execute("CREATE TABLE IF NOT EXISTS posts (
+		db = Connection::open(&args.flag_db).unwrap();
+		db.execute("CREATE TABLE IF NOT EXISTS posts (
 			id		INTEGER PRIMARY KEY,
 			url		TEXT NOT NULL,
 			user		TEXT NOT NULL,
@@ -81,7 +81,7 @@ fn main() {
 			time_created	TEXT NOT NULL
 			)", &[]).unwrap();
 	} else {
-		db = Box::new(None);
+		db = Connection::open_in_memory().unwrap();
 	}
 
 	let server = IrcServer::new("config.toml").unwrap();
@@ -122,8 +122,8 @@ fn main() {
 								channel: target.to_string(),
 								time_created: time::get_time(),
 							};
-							if !args.db.is_empty() {
-								add_log(db, &entry);
+							if !args.flag_db.is_empty() {
+								add_log(&db, &entry);
 							}
 						}
 						_ => ()

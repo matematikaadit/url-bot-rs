@@ -19,3 +19,4 @@ thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', /checko
 
  - more efficient use of curl (stop fetching page once title has been obtained)
  - log URLs and check for previous postings
+ - Better handling of IRC connection errors (don't panic)
