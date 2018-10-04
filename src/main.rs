@@ -95,10 +95,10 @@ fn main() {
                         _     => { continue; }
                     }
 
-                    match url.scheme() {
+                    match url.scheme_part().map(|s| s.as_str()) {
                         Some("http")  => {title = http::resolve_url(t, &args.flag_lang);}
                         Some("https") => {title = http::resolve_url(t, &args.flag_lang);}
-                        _ => ()
+                        _             => ()
                     }
 
                     match title {
