@@ -18,16 +18,24 @@
     [10:49:29] * benbrown imagines tan wearing https://images-na.ssl-images-amazon.com/images/I/51p9QZZj4lL._UX385_.jpg
     [10:49:29] <wall-e> ⤷ Bad Request
 
+# Cookies
+
+    [14:19:39] <kristerman> https://botw.ticketline.co.uk/order/tickets/13336481/kamaal-williams-at-gorilla-manchester-gorilla-2018-11-06-19-30-00
+    [14:19:40] <wall-e> ⤷ Browser cookies are required | Band On The Wall Ticketlin
+
 # Extra features
 
  - More efficient use of curl (stop fetching page once title has been obtained)
+ - MIME matching, image metadata
  - Better handling of IRC connection errors (don't panic)
  - Set config file path on command line option / have default search paths,
    local last
- - Update to updated rust IRC API
+ - XDG paths
  - Batch log processor to add historical logs to the database
  - Investigate [reqwest](https://github.com/seanmonstar/reqwest) as an
    alternative to curl
+ - Nick ignore list
+ - Lua plugins
 
 # Tests
 
