@@ -9,6 +9,15 @@
  - Poorly formatted toml configuration
  - Various failures connecting to the IRC server, needs added exception handling.
 
+# Possible freeze
+
+ - <kristerman> adds68, remember this? https://open.spotify.com/track/3Z2Thcr0SrxKcQpvouDpR8
+
+# Bad request
+
+    [10:49:29] * benbrown imagines tan wearing https://images-na.ssl-images-amazon.com/images/I/51p9QZZj4lL._UX385_.jpg
+    [10:49:29] <wall-e> ⤷ Bad Request
+
 # Extra features
 
  - More efficient use of curl (stop fetching page once title has been obtained)
